@@ -72,7 +72,6 @@ void loop() {
   lcd.print(combustible);
   lcd.print(" %");
 
-  // Enviar los datos al servidor Flask
   if (WiFi.status() == WL_CONNECTED) {
     sendSensorData(velocidad, temperatura, presion, combustible);
   } else {
@@ -82,7 +81,6 @@ void loop() {
   delay(5000); // Espera 5 segundos antes de la siguiente actualización
 }
 
-// Función para enviar los datos al servidor Flask en formato JSON
 void sendSensorData(int velocidad, int temperatura, int presion, int combustible) {
   HTTPClient http;
   Serial.print("Conectando a la URL: ");
@@ -91,7 +89,6 @@ void sendSensorData(int velocidad, int temperatura, int presion, int combustible
   http.begin(serverUrl);
   http.addHeader("Content-Type", "application/json");
 
-  // Crear el JSON con los datos de los sensores
   StaticJsonDocument<200> jsonDoc;
   jsonDoc["device_id"] = deviceId;
   jsonDoc["velocidad"] = velocidad;
@@ -105,7 +102,6 @@ void sendSensorData(int velocidad, int temperatura, int presion, int combustible
   Serial.print("Datos enviados: ");
   Serial.println(requestBody);
 
-  // Enviar la solicitud POST
   int httpResponseCode = http.POST(requestBody);
 
   // Verificar el código de respuesta
