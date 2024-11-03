@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 void inicializarSensorCombustible() {
-  pinMode(33, INPUT); // Configura GPIO33 como entrada para el sensor de combustible
+  pinMode(33, INPUT); // Configura GPIO33 como entrada para el sensor de combustible  
 }
 
 float leerSensorCombustible() {
